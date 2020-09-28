@@ -23,15 +23,8 @@ struct WidgetView: View {
     var body: some View{
         let movie = data.widgetData.shuffled().first
         
-        if widgetFamily == .systemSmall {
-            VStack{
-                NetworkImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(movie?.imageURL ?? "")")!)
-                    .aspectRatio(contentMode: .fill)
-                    .cornerRadius(5)
-            }.edgesIgnoringSafeArea(.all)
-                
-        }
-        else if widgetFamily == .systemLarge{
+        switch widgetFamily {
+        case .systemLarge:
             VStack{
                 NetworkImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(movie?.imageURL ?? "")")!)
                     .cornerRadius(5)
@@ -44,18 +37,29 @@ struct WidgetView: View {
                     .fontWeight(.medium)
                     .padding(.bottom,5)
                     .foregroundColor(Color.white)
-                
-
             }
-        }else if widgetFamily == .systemMedium {
-            HStack{
+        case .systemSmall:
+            VStack{
                 NetworkImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(movie?.imageURL ?? "")")!)
+                    .aspectRatio(contentMode: .fill)
                     .cornerRadius(5)
+            }.edgesIgnoringSafeArea(.all)
+        case .systemMedium:
+            VStack{
                 Text("\(movie?.title ?? "")")
                     .fontWeight(.heavy)
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
-            }.edgesIgnoringSafeArea(.all)
+                Text("\(movie?.releaseDate ?? "")")
+                    .fontWeight(.medium)
+                    .padding(.bottom,5)
+                    .foregroundColor(Color.white)
+            }
+        @unknown default:
+            Text("\(movie?.releaseDate ?? "")")
+                .fontWeight(.medium)
+                .padding(.bottom,5)
+                .foregroundColor(Color.white)
         }
         
     }
@@ -75,8 +79,8 @@ struct MainWidget:Widget {
                 
         }
         .configurationDisplayName("En Popüler Filmler Burada")
-               .description("Üçünü de Dene Tarafını Seç")
-        
+        .description("Üçünü de Dene Tarafını Seç")
+        .supportedFamilies([.systemSmall,.systemLarge])
         
     }
 }
@@ -89,7 +93,7 @@ struct Provider: TimelineProvider{
     
     func getSnapshot(in context: Context, completion: @escaping (Model) -> Void) {
         
-        let loadingData = Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", releaseDate: "06-06-2020", imageURL: "")])
+        let loadingData = Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", releaseDate: "18-03-2019", imageURL: "")])
         
         completion(loadingData)
     }
@@ -98,8 +102,8 @@ struct Provider: TimelineProvider{
             let date = Date()
             let data = Model(date: date, widgetData: result.results ?? [])
             //print("data",data)
-            let nextUpdate = Calendar.current.date(byAdding: .minute, value: 1, to: date)
-            let timeline = Timeline(entries: [data], policy: .after(nextUpdate ?? Date()))
+            //let nextUpdate = Calendar.current.date(byAdding: .minute, value: 1, to: date)
+            let timeline = Timeline(entries: [data], policy: .atEnd)
             completion(timeline)
         }
     }
@@ -114,7 +118,21 @@ struct Provider: TimelineProvider{
 
 struct MovieWidget_Previews: PreviewProvider {
     static var previews: some View {
-        Text("KEREM!")
+        Group{
+            WidgetView(data: Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", releaseDate: "18-03-2019", imageURL: "")]))
+                .padding(.vertical)
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .previewDisplayName("Small widget")
+                .environment(\.colorScheme, .dark)
+            WidgetView(data: Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", releaseDate: "18-03-2019", imageURL: "")]))
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+                .previewDisplayName("Large widget")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.black.opacity(0.5))
+                
+        }
+        
+
     }
 }
 struct NetworkImage: View {
