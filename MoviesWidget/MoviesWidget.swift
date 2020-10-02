@@ -109,8 +109,7 @@ struct Provider: TimelineProvider{
     }
     
     func placeholder(in context: Context) -> Model {
-        let url = "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
-        return Model(date: Date(), widgetData: [JSONModel(title: "Kerem", releaseDate: "Kerem", imageURL: url)])
+        return Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", releaseDate: "18-03-2019", imageURL: "")])
     }
     
     
@@ -136,28 +135,25 @@ struct MovieWidget_Previews: PreviewProvider {
     }
 }
 struct NetworkImage: View {
-    
-   let url: URL?
-
-  var body: some View {
-
-    Group {
-     if let url = url, let imageData = try? Data(contentsOf: url),
-       let uiImage = UIImage(data: imageData) {
-
-       Image(uiImage: uiImage)
-         .resizable()
-        .aspectRatio(contentMode: .fit)
-        
-      }
-      else {
-        VStack{
-            Image("BG")
-             .resizable()
-            .aspectRatio(contentMode: .fit)
-               
-        }
-       
+    let url: URL?
+    var body: some View {
+        Group {
+            if let url = url, let imageData = try? Data(contentsOf: url),
+               let uiImage = UIImage(data: imageData) {
+                
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                
+            }
+            else {
+                VStack{
+                    Image("BG")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    
+                }
+                
       }
     }
   }

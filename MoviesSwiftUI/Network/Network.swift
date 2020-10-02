@@ -89,6 +89,7 @@ extension Network {
         request.httpMethod = "GET"
         return request
     }
+   
     
     func getDetailURL(_ movie_id: Int) -> URLRequest {
         let api_key = "189d34686859866c672497d5d9a03707"
