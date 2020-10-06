@@ -20,6 +20,14 @@ struct WidgetView: View {
     @Environment(\.widgetFamily) var widgetFamily
     var data : Provider.Entry
     
+    let numberFormatter: NumberFormatter = {
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 10
+        return numberFormatter
+    }()
+    
     var body: some View{
         let movie = data.widgetData.shuffled().first
         
@@ -33,7 +41,7 @@ struct WidgetView: View {
                     .fontWeight(.heavy)
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
-                Text("\(movie?.releaseDate ?? "")")
+                Text("Rating: \(movie?.vote_average ?? 0.0)")
                     .fontWeight(.medium)
                     .padding(.bottom,5)
                     .foregroundColor(Color.white)
@@ -50,13 +58,13 @@ struct WidgetView: View {
                     .fontWeight(.heavy)
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
-                Text("\(movie?.releaseDate ?? "")")
+                Text("Rating: \(movie?.vote_average ?? 0.0)")
                     .fontWeight(.medium)
                     .padding(.bottom,5)
                     .foregroundColor(Color.white)
             }
         @unknown default:
-            Text("\(movie?.releaseDate ?? "")")
+            Text("\(movie?.vote_average ?? 0.0)")
                 .fontWeight(.medium)
                 .padding(.bottom,5)
                 .foregroundColor(Color.white)
@@ -73,7 +81,7 @@ struct MainWidget:Widget {
             VStack{
                 WidgetView(data: data)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.black.opacity(0.5))
+                    .background(Color.black.opacity(0.8))
                 
             }
                 
@@ -93,7 +101,7 @@ struct Provider: TimelineProvider{
     
     func getSnapshot(in context: Context, completion: @escaping (Model) -> Void) {
         
-        let loadingData = Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", releaseDate: "18-03-2019", imageURL: "")])
+        let loadingData = Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", vote_average: 0.0, imageURL: "")])
         
         completion(loadingData)
     }
@@ -109,7 +117,7 @@ struct Provider: TimelineProvider{
     }
     
     func placeholder(in context: Context) -> Model {
-        return Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", releaseDate: "18-03-2019", imageURL: "")])
+        return Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", vote_average: 0.0, imageURL: "")])
     }
     
     
@@ -118,12 +126,12 @@ struct Provider: TimelineProvider{
 struct MovieWidget_Previews: PreviewProvider {
     static var previews: some View {
         Group{
-            WidgetView(data: Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", releaseDate: "18-03-2019", imageURL: "")]))
+            WidgetView(data: Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", vote_average: 0.0, imageURL: "")]))
                 .padding(.vertical)
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .previewDisplayName("Small widget")
                 .environment(\.colorScheme, .dark)
-            WidgetView(data: Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", releaseDate: "18-03-2019", imageURL: "")]))
+            WidgetView(data: Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", vote_average: 0.0, imageURL: "")]))
                 .previewContext(WidgetPreviewContext(family: .systemLarge))
                 .previewDisplayName("Large widget")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

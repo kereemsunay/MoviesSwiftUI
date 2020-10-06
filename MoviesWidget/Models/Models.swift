@@ -13,11 +13,11 @@ struct PopularMovies: Codable {
 }
 struct JSONModel:Codable,Hashable {
     let title: String
-    let releaseDate: String?
+    let vote_average: Double?
     let imageURL : String
     enum CodingKeys : String, CodingKey {
-        case title
-        case releaseDate = "release_date"
+        case title,vote_average
+        //case releaseDate = "release_date"
         case imageURL = "poster_path"
     }
 }
