@@ -12,34 +12,61 @@ import Combine
 import KingfisherSwiftUI
 
 
-struct ContentView: View {
-    
-    @ObservedObject var network = Network()
-    @State var page = 1
+
+struct RepositoriesListContainer: View {
+    @ObservedObject var viewModel: RepositoriesViewModel
     
     var body: some View {
-        
-        NavigationView{
-            
-            List(network.movies){ movie in
-                
-                HStack {
-                    NavigationLink(destination: DetailView(moviesID: movie.id ?? 0)) {
-                        MovieImage(movies: movie)
-                        MovieRowView(movies: movie)
-                    }
-                    
-                }
-            }
-            .navigationBarItems(trailing: Button("Next"){
-                self.page += 1
-                self.network.fetchMovies(currentpage: self.page)
-            })
-                .navigationBarTitle("Movies")
-        }
+        MovieList(
+            repos: viewModel.state.repos,
+            isLoading: viewModel.state.canLoadNextPage,
+            onScrolledAtBottom: viewModel.fetchNextPageIfPossible
+        )
+        .onAppear(perform: viewModel.fetchNextPageIfPossible)
     }
 }
 
+
+
+struct MovieList: View {
+    let repos: [Movies]
+    let isLoading: Bool
+    let onScrolledAtBottom: () -> Void
+    
+    var body: some View {
+        NavigationView{
+            List {
+                reposList
+                if isLoading {
+                    loadingIndicator
+                }
+            }.navigationBarTitle("Movies")
+        }
+    }
+    
+    private var reposList: some View {
+        ForEach(repos) { repo in
+            HStack {
+                NavigationLink(destination: DetailView(moviesID: repo.id ?? 0)) {
+                    MovieImage(movies: repo)
+                    MovieRowView(movies: repo)
+                }
+                
+            }.onAppear {
+                if self.repos.last == repo {
+                    self.onScrolledAtBottom()
+                }
+            }
+        }
+    }
+    
+    private var loadingIndicator: some View {
+        Spinner(style: .medium)
+            .frame(idealWidth: .infinity, maxWidth: .infinity, alignment: .center)
+    }
+}
+
+//MARK -> Components
 struct MovieRowView : View{
     let movies : Movies
     
@@ -79,9 +106,9 @@ struct MovieImage : View{
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
 

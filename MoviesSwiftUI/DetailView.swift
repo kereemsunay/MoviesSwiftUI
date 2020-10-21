@@ -28,7 +28,6 @@ struct DetailView: View {
             VStack {
                 DetailMovieDesign(detailMovie: network.detail)
                
-                    
                 }.onAppear{
                     self.network.fetchDetails(chosenID: self.moviesID ?? 0)
             }
@@ -60,17 +59,17 @@ struct DetailMovieLabels : View{
     
     var body: some View{
         VStack(alignment:.leading){
-            Text("\(detailMovie?.title ?? "Kerrrem")")
+            Text("\(detailMovie?.title ?? "Unknown Title")")
                 .font(.headline)
                 .fontWeight(.semibold)
                 .padding(.bottom,10)
                 
-            Text("\(detailMovie?.tagline ?? "Tagline")")
+            Text("\(detailMovie?.tagline ?? "Unknown Tagline")")
                 .padding(.bottom,5)
                 .foregroundColor(Color.white)
                 .background(Color.red)
             ScrollView{
-                Text("\(detailMovie?.overview ?? "askkldfsdlkfsdjlfkjsdfsss")")
+                Text("\(detailMovie?.overview ?? "Unknown Overview")")
                 .fixedSize(horizontal: false, vertical: true)
             }
                 

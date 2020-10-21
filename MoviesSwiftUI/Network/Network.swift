@@ -73,10 +73,7 @@ class Network :ObservableObject{
         getDataAPI(request: request, completion: completion)
     }
     
-    init() {
-           fetchMovies(currentpage: page)
-        
-       }
+
     
 }
 
@@ -109,7 +106,7 @@ extension Network{
                 print("fetchMovies")
                 if let movie = movies.results{
                     self.movies.append(contentsOf: movie)
-                    print(self.movies.count)
+                    
                 }
                 
                 

@@ -27,6 +27,9 @@
 		940B1A57251FBDFE0099CEBA /* WidgetNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940B1A56251FBDFE0099CEBA /* WidgetNetwork.swift */; };
 		940B1A5A251FBF940099CEBA /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 940B1A59251FBF940099CEBA /* KingfisherSwiftUI */; };
 		940B1A5E251FDC530099CEBA /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940B1A5D251FDC520099CEBA /* Models.swift */; };
+		940F6DBA254029790001C4E5 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F6DB6254029010001C4E5 /* RatingView.swift */; };
+		940F6DBE25403C830001C4E5 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F6DBD25403C830001C4E5 /* Spinner.swift */; };
+		940F6DC1254052550001C4E5 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F6DC0254052550001C4E5 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +87,9 @@
 		940B1A4C251FBDC40099CEBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		940B1A56251FBDFE0099CEBA /* WidgetNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetNetwork.swift; sourceTree = "<group>"; };
 		940B1A5D251FDC520099CEBA /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		940F6DB6254029010001C4E5 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		940F6DBD25403C830001C4E5 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		940F6DC0254052550001C4E5 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,9 @@
 				940B19F1251FAD520099CEBA /* Assets.xcassets */,
 				940B19F6251FAD520099CEBA /* Info.plist */,
 				940B19F3251FAD520099CEBA /* Preview Content */,
+				940F6DB6254029010001C4E5 /* RatingView.swift */,
+				940F6DBD25403C830001C4E5 /* Spinner.swift */,
+				940F6DC0254052550001C4E5 /* ViewModel.swift */,
 			);
 			path = MoviesSwiftUI;
 			sourceTree = "<group>";
@@ -308,7 +317,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				940F6DC1254052550001C4E5 /* ViewModel.swift in Sources */,
 				940B1A0D251FAE770099CEBA /* PopularMovies.swift in Sources */,
+				940F6DBE25403C830001C4E5 /* Spinner.swift in Sources */,
 				940B1A0E251FAE770099CEBA /* MovieAPIError.swift in Sources */,
 				940B1A0F251FAE770099CEBA /* Network.swift in Sources */,
 				940B1A11251FAFFD0099CEBA /* DetailView.swift in Sources */,
@@ -326,6 +337,7 @@
 				940B1A48251FBDC10099CEBA /* MoviesWidget.swift in Sources */,
 				940B1A4D251FBDC40099CEBA /* MoviesWidget.intentdefinition in Sources */,
 				940B1A57251FBDFE0099CEBA /* WidgetNetwork.swift in Sources */,
+				940F6DBA254029790001C4E5 /* RatingView.swift in Sources */,
 				940B1A5E251FDC530099CEBA /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +476,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MoviesSwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = UYU5T657K6;
 				ENABLE_PREVIEWS = YES;
@@ -476,7 +489,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.MoviesSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -487,6 +500,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MoviesSwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = UYU5T657K6;
 				ENABLE_PREVIEWS = YES;
@@ -499,7 +513,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.MoviesSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -509,6 +523,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = UYU5T657K6;
 				INFOPLIST_FILE = MoviesWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -530,6 +545,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = UYU5T657K6;
 				INFOPLIST_FILE = MoviesWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

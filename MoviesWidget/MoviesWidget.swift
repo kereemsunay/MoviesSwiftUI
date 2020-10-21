@@ -41,10 +41,15 @@ struct WidgetView: View {
                     .fontWeight(.heavy)
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
-                Text("Rating: \(movie?.vote_average ?? 0.0)")
-                    .fontWeight(.medium)
-                    .padding(.bottom,5)
-                    .foregroundColor(Color.white)
+                HStack{
+                    Text("Rating: ")
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.white)
+                        .multilineTextAlignment(.center)
+                    StarsView(rating: CGFloat(movie?.vote_average ?? 0.0), maxRating: 10.0)
+                    
+                }
+                Spacer()
             }
         case .systemSmall:
             VStack{
