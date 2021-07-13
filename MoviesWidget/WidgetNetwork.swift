@@ -47,8 +47,9 @@ class WidgetNetwork {
 extension WidgetNetwork {
     
     func getPopularURL(_ page: Int) -> URLRequest {
+        let lang = NSLocalizedString("NETWORK_LANG", comment: "Language changing")
         let api_key = "189d34686859866c672497d5d9a03707"
-        let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=\(api_key)&page=\(page)")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=\(api_key)&language=\(lang)&page=\(page)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         return request

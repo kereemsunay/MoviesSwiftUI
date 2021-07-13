@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 struct MovieDetail:Codable,Identifiable {
     let title: String?

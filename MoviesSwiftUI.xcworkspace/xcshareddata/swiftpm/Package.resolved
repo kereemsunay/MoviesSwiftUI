@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
+        "state": {
+          "branch": null,
+          "revision": "2a10bf41da75599a9f8e872dbd44fe0155a2e00c",
+          "version": "5.15.8"
+        }
+      },
+      {
+        "package": "Neumorphic",
+        "repositoryURL": "https://github.com/costachung/neumorphic/",
+        "state": {
+          "branch": null,
+          "revision": "df59e5e82ab335243848508ccb6e689fffdf596e",
+          "version": "1.2.6"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

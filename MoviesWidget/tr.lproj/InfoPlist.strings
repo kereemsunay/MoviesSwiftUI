@@ -1,0 +1,6 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "MoviesWidget";
+
+/* Bundle name */
+"CFBundleName" = "MoviesWidgetExtension";
+

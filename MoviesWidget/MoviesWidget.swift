@@ -42,7 +42,7 @@ struct WidgetView: View {
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
                 HStack{
-                    Text("Rating: ")
+                    Text("WIDGET_RATING: ")
                         .fontWeight(.bold)
                         .foregroundColor(Color.white)
                         .multilineTextAlignment(.center)
@@ -63,7 +63,7 @@ struct WidgetView: View {
                     .fontWeight(.heavy)
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
-                Text("Rating: \(movie?.vote_average ?? 0.0)")
+                Text("WIDGET_RATING: \(movie?.vote_average ?? 0.0)")
                     .fontWeight(.medium)
                     .padding(.bottom,5)
                     .foregroundColor(Color.white)
@@ -106,7 +106,7 @@ struct Provider: TimelineProvider{
     
     func getSnapshot(in context: Context, completion: @escaping (Model) -> Void) {
         
-        let loadingData = Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", vote_average: 0.0, imageURL: "")])
+        let loadingData = Model(date: Date(), widgetData: [JSONModel(title: "WIDGET_MOVIE_NAME", vote_average: 0.0, imageURL: "")])
         
         completion(loadingData)
     }
@@ -122,7 +122,7 @@ struct Provider: TimelineProvider{
     }
     
     func placeholder(in context: Context) -> Model {
-        return Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", vote_average: 0.0, imageURL: "")])
+        return Model(date: Date(), widgetData: [JSONModel(title: "WIDGET_MOVIE_NAME", vote_average: 0.0, imageURL: "")])
     }
     
     
@@ -131,12 +131,12 @@ struct Provider: TimelineProvider{
 struct MovieWidget_Previews: PreviewProvider {
     static var previews: some View {
         Group{
-            WidgetView(data: Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", vote_average: 0.0, imageURL: "")]))
+            WidgetView(data: Model(date: Date(), widgetData: [JSONModel(title: "WIDGET_MOVIE_NAME", vote_average: 0.0, imageURL: "")]))
                 .padding(.vertical)
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .previewDisplayName("Small widget")
                 .environment(\.colorScheme, .dark)
-            WidgetView(data: Model(date: Date(), widgetData: [JSONModel(title: "Movie Name", vote_average: 0.0, imageURL: "")]))
+            WidgetView(data: Model(date: Date(), widgetData: [JSONModel(title: "WIDGET_MOVIE_NAME", vote_average: 0.0, imageURL: "")]))
                 .previewContext(WidgetPreviewContext(family: .systemLarge))
                 .previewDisplayName("Large widget")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

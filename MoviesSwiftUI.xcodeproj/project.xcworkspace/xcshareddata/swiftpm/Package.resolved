@@ -9,6 +9,15 @@
           "revision": "2d795b521934b02357fec781b33e2c407655eebb",
           "version": "5.15.4"
         }
+      },
+      {
+        "package": "Neumorphic",
+        "repositoryURL": "https://github.com/costachung/neumorphic/",
+        "state": {
+          "branch": null,
+          "revision": "df59e5e82ab335243848508ccb6e689fffdf596e",
+          "version": "1.2.6"
+        }
       }
     ]
   },
